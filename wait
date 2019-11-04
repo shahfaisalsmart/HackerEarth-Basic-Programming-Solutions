@@ -1,22 +1,7 @@
 #include<bits/stdc++.h>
-using namespace std;
-int main()
-{
-    string s;
-    getline(cin,s);
-    string t;
-    unordered_map<string,int>mp;
-    istringstream inp(s);
-    for(;inp>>t;)
-        mp[t]++;
-    bool flag=false;
-    for(unordered_map<string,int>:: iterator it=mp.begin();it!=mp.end();it++)
-    {
-        if(it->second!=1){
-            cout<<it->first<<" "<<it->second<<endl;
-            flag=true;
-        }
-    }
-    if(!flag) cout<<"-1"<<endl; 
-    return 0;
+string uniqueChar(string str){
+    // Write your code here
+    unordered_set<char> temp;
+    str.erase(remove_if(str.begin(),str.end(),[&](const char c){return !temp.insert(c).second;}),str.end());
+    return str;
 }
