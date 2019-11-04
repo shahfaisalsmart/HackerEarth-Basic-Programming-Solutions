@@ -1,7 +1,33 @@
 #include<bits/stdc++.h>
-string uniqueChar(string str){
-    // Write your code here
-    unordered_set<char> temp;
-    str.erase(remove_if(str.begin(),str.end(),[&](const char c){return !temp.insert(c).second;}),str.end());
-    return str;
+using namespace std;
+int main()
+{
+    int n;
+    cin >> n;
+    int a[n],b[n];
+    for(int i=0;i<n;i++)
+        cin >> a[i];
+    for(int j=0;j<n;j++)
+        cin >> b[j];
+    sort(a,a+n);
+    sort(b,b+n);
+    int i=0,j=0,count=0;
+    int max=INT_MIN;
+    while(i<n && j<n)
+    {
+        if(a[i]<b[j])
+        {
+            count++;
+            i++;
+        }
+        else 
+        {
+            count--;
+            j++;
+        }
+        if(count>max)
+            max=count;
+    }
+    cout<<max<<endl;
+    return 0;
 }
