@@ -1,33 +1,29 @@
 #include<bits/stdc++.h>
 using namespace std;
+bool comparing (const pair<string,int> &u,const pair<string,int> &v)
+{
+    return (u.second > v.second);
+}
 int main()
 {
     int n;
     cin >> n;
-    int a[n],b[n];
-    for(int i=0;i<n;i++)
-        cin >> a[i];
-    for(int j=0;j<n;j++)
-        cin >> b[j];
-    sort(a,a+n);
-    sort(b,b+n);
-    int i=0,j=0,count=0;
-    int max=INT_MIN;
-    while(i<n && j<n)
+    vector<pair<string,int>>mark;
+    while(n--)
     {
-        if(a[i]<b[j])
-        {
-            count++;
-            i++;
-        }
-        else 
-        {
-            count--;
-            j++;
-        }
-        if(count>max)
-            max=count;
+         string s;
+         cin >> s;
+         int a,b,c;
+         cin >> a >> b >> c;
+         int sum;
+         sum = a+b+c;
+         mark.push_back(make_pair(s,sum));
     }
-    cout<<max<<endl;
-    return 0;
+    stable_sort(mark.begin(),mark.end(),comparing);
+    int j=1;
+    for(vector<pair<string ,int>>:: iterator it = mark.begin();it!=mark.end();it++)
+    {
+        cout<<j<<" "<<it->first<<endl;
+        j++;
+    }
 }
